@@ -417,25 +417,29 @@ $(document).ready(function() {
     // ==========================================================
     // BÖLMƏ 4: "YENİ FIRSATLAR" BANNERİNİN MƏNTİQİ
     // ==========================================================
-    // DÜZƏLİŞ: Bu kod bloku yuxarıdakı artıq olan "DOMContentLoaded" içindən çıxarılıb
-    // və birbaşa $(document).ready() içində işləyəcək.
     const banner = document.getElementById('opportunity-banner');
 
+    // Əgər banner HTML-də mövcuddursa (yəni yeni gündürsə)
     if (banner) {
         const closeBtn = document.getElementById('close-banner-btn');
+        // Bu günün tarixini "YYYY-MM-DD" formatında alırıq
         const todayStr = new Date().toISOString().split('T')[0];
 
+        // Brauzer yaddaşında bu günün tarixinin saxlanıb-saxlanmadığını yoxlayırıq
         const isHiddenForToday = localStorage.getItem('hideOpportunityBannerFor') === todayStr;
 
-        if (isHiddenForToday) {
-            banner.style.display = 'none';
-        } else {
+        // Əgər bu gün üçün artıq gizlədilibsə, heç nə etmirik (banner onsuz da `display:none` ilə yaradılıb)
+        // Əgər gizlədilməyibsə, banneri göstəririk
+        if (!isHiddenForToday) {
             banner.style.display = 'block';
         }
 
+        // Bağlama düyməsinə kliklədikdə
         if(closeBtn) {
             closeBtn.addEventListener('click', function() {
+                // Banneri gizlədirik
                 banner.style.display = 'none';
+                // Brauzer yaddaşına bu günün tarixini yazırıq ki, səhifə yenilənəndə təkrar görünməsin
                 localStorage.setItem('hideOpportunityBannerFor', todayStr);
             });
         }
