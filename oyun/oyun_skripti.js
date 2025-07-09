@@ -1,10 +1,10 @@
 // ==========================================================
 // WORDLE TİPLİ OYUNUN MƏNTİQİ (Mövcud kod)
 // ==========================================================
-const keyClickSound = new Audio("./oyun/files/keyClickSound.mp3");
-const winSound = new Audio("./oyun/files/winSound.mp3");
-const SoundGreen = new Audio("./oyun/files/SoundGreen.mp3");
-const SoundGrayOrange = new Audio("./oyun/files/SoundGrayOrange.mp3");
+const keyClickSound = new Audio("files/keyClickSound.mp3");
+const winSound = new Audio("files/winSound.mp3");
+const SoundGreen = new Audio("files/SoundGreen.mp3");
+const SoundGrayOrange = new Audio("files/SoundGrayOrange.mp3");
 let soundEnabled = true;
 
 document.addEventListener('DOMContentLoaded', async () => {
