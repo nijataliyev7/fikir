@@ -1,0 +1,1977 @@
+body {
+    font-family: 'Inter', sans-serif; /* Yeni, dəstəkli şrifti tətbiq edirik */
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased; /* Şriftlərin daha oxunaqlı olması üçün */
+    -moz-osx-font-smoothing: grayscale;
+
+}
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+h1, h2 {
+    text-align: center;
+    color: #0056b3;
+}
+hr {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 25px 0;
+}
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#comment-form input, #comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+#comment-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+#comment-form button:hover {
+    background-color: #0056b3;
+}
+
+#comments-container {
+    margin-top: 20px;
+}
+
+.comment {
+    background: #f9f9f9;
+    border: 1px solid #e7e7e7;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+.comment-date {
+    font-size: 12px;
+    color: #777;
+    margin-left: auto;
+}
+.comment-body {
+    margin: 10px 0;
+}
+.comment-footer .like-btn {
+    background: #e7f3ff;
+    color: #0056b3;
+    border: 1px solid #b3d7ff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.comment-footer .like-btn:hover {
+    background: #cce5ff;
+}
+.comment-footer .like-btn:disabled {
+    background: #d4edda;
+    color: #155724;
+    cursor: not-allowed;
+    border-color: #c3e6cb;
+}
+
+.tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+}
+.tag.newest { background-color: #28a745; }
+.tag.popular { background-color: #dc3545; }
+
+/* Mobil Uyğunluq */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .comment-date {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
+
+/* ... Əvvəlki bütün stillər burada qalır ... */
+
+#loader {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* ... Bütün köhnə stillər olduğu kimi qalır ... */
+
+.comment-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Elementləri aralı yerləşdirir */
+}
+
+.admin-actions a, .admin-actions button {
+    font-size: 12px;
+    text-decoration: none;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: white;
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+}
+.admin-actions .admin-edit-btn { background-color: #ffc107; }
+.admin-actions .admin-delete-btn { background-color: #dc3545; }
+
+/* ... Bütün köhnə stillər olduğu kimi qalır ... */
+
+.ad-slot-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* ... Bütün köhnə stillər olduğu kimi qalır ... */
+
+/* Populyar rəy bloku üçün xüsusi stillər */
+.featured-comment {
+    background-color: #fffbeb; /* Açıq sarı fon */
+    border: 1px solid #fde68a; /* Sarı çərçivə */
+    border-left: 5px solid #facc15; /* Qalın sarı sol xətt */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px auto;
+    max-width: 95%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.featured-comment-header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ca8a04; /* Tünd sarı */
+    margin-bottom: 15px;
+}
+
+.featured-comment .comment-body p {
+    font-style: italic;
+    font-size: 1.1em;
+    color: #333;
+    margin: 0 0 15px;
+}
+
+.featured-comment .comment-body strong {
+    font-style: normal;
+    color: #555;
+}
+
+.featured-comment-footer {
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #c026d3; /* Bəyəni sayı üçün fərqli rəng */
+}
+
+
+
+
+
+/* ... Digər bütün stillər olduğu kimi qalır ... */
+
+
+/* === YENİ VƏ MOBİLƏ UYĞUN SƏHİFƏLƏMƏ STİLLƏRİ === */
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center; /* Səhifələməni üfüqi mərkəzə gətirir */
+    margin-top: 25px;
+    padding-bottom: 15px;
+}
+
+ul.pagination {
+    display: flex;
+    flex-wrap: wrap; /* MOBİL UYĞUNLUQ: Sığmadıqda elementləri alt sətirə keçirir */
+    justify-content: center; /* MOBİL UYĞUNLUQ: Alt sətirə keçən elementləri mərkəzə yığır */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 3px; /* Elementlər arasında (həm üfüqi, həm şaquli) boşluq yaradır */
+}
+
+.page-link {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 15px; /* Ölçünü bir qədər yığcamlaşdırırıq */
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    transition: background-color 0.2s, color 0.2s;
+    display: block;
+    font-size: 14px; /* Mobildə daha yaxşı görünməsi üçün şrift ölçüsü */
+    border-radius: 6px; /* Hər düyməyə ayrı-ayrılıqda radius veririk */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.page-item:not(.disabled) .page-link:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+
+.page-item.active .page-link,
+.page-item.active .page-link:hover {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    cursor: default;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #f8f9fa;
+}
+
+/* === YENİ MƏQALƏ BÖLMƏSİ ÜÇÜN STİLLƏR === */
+.article-section {
+    margin-top: 40px; /* Səhifələmə ilə arasında boşluq yaradır */
+    padding-top: 20px;
+}
+
+.article-section h2 {
+    color: #333; /* Başlıq rəngi */
+    text-align: left; /* Başlığı sola düzləndirir */
+    font-size: 24px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0; /* Başlığın altına incə xətt */
+}
+
+.article-section p {
+    font-size: 16px;
+    line-height: 1.8; /* Sətirlər arası məsafəni artırır */
+    color: #444; /* Mətn rəngini bir az tündləşdirir */
+    text-align: justify; /* Mətnin hər iki tərəfini düzləndirir */
+    margin-bottom: 1.2em; /* Abzaslar arası boşluq */
+}
+
+.article-section p strong {
+    color: #000; /* Qalın yazılmış sözlərin rəngi */
+}
+
+/* ... mövcud bütün stillər olduğu kimi qalır ... */
+
+/* Stiker Qalereyası üçün Əsas Stiller */
+.sticker-gallery { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Böyük ekranlarda avtomatik düzülmə */
+    gap: 30px; 
+    justify-content: center; 
+}
+
+.sticker-card-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.sticker-card-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.sticker-card {
+    aspect-ratio: 1 / 1; /* Şəkil üçün kvadrat sahə */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+}
+
+.sticker-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.sticker-info {
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+}
+
+.sticker-info h3 { 
+    margin: 0 0 10px; 
+    font-size: 18px; 
+}
+
+/* Yükləmə zamanı arxa fon rəngləri */
+.bg-color-1 { background: linear-gradient(135deg, #a8e063, #56ab2f); }
+.bg-color-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.bg-color-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.bg-color-4 { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+.bg-color-5 { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
+
+
+/* Hər stikerin altındakı ən populyar rəy bloku */
+.top-comment-preview {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #555;
+    position: relative;
+    border-left: 3px solid #007bff;
+    text-align: left;
+}
+.top-comment-preview .comment-icon {
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    font-size: 24px;
+    opacity: 0.15;
+}
+.top-comment-preview .comment-text {
+    margin: 0 0 10px;
+    font-style: italic;
+}
+.top-comment-preview .comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+.top-comment-preview .comment-author {
+    color: #333;
+}
+.top-comment-preview .likes-badge {
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #eee;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #e44d26;
+    font-weight: bold;
+}
+
+/* Rəy Yaz Düyməsi */
+.comment-button {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+.comment-button:hover {
+    background-color: #0056b3;
+}
+
+/* MOBİL GÖRÜNÜŞ (2 SÜTUN) */
+@media (max-width: 768px) {
+    .sticker-gallery {
+        grid-template-columns: 1fr 1fr; /* 2 bərabər sütun */
+        gap: 15px;
+    }
+    .sticker-info h3 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+}
+
+/* === KEÇİD (BREADCRUMB) NAVİQASİYASI ÜÇÜN STİLLƏR === */
+
+
+
+.breadcrumb {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    padding: 0.75rem 1rem;
+
+    margin-bottom: 1.5rem; /* Başlıqla arasında məsafə */
+
+    list-style: none;
+
+    background-color: #f8f9fa; /* Arxa fon rəngi */
+
+    border-radius: 8px; /* Kənarların yumşaldılması */
+
+    font-size: 15px;
+
+}
+
+
+
+.breadcrumb-item + .breadcrumb-item::before {
+
+    display: inline-block;
+
+    padding-right: 0.5rem;
+
+    padding-left: 0.5rem;
+
+    color: #6c757d; /* Ayırıcı işarənin rəngi */
+
+    content: "/"; /* Ayırıcı işarə */
+
+}
+
+
+
+.breadcrumb-item a {
+
+    color: #007bff; /* Linkin rəngi */
+
+    text-decoration: none;
+
+    transition: color 0.2s;
+
+}
+
+
+
+.breadcrumb-item a:hover {
+
+    color: #0056b3; /* Linkin üzərinə gətirdikdə rəngi */
+
+}
+
+
+
+.breadcrumb-item.active {
+
+    color: #6c757d; /* Aktiv (cari) səhifənin rəngi */
+
+}
+
+/* --- Google Login Button & User Profile Header --- */
+.main-header { background: #fff; border-bottom: 1px solid #e9ecef; padding: 10px 0; }
+.main-nav { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: bold; color: #333; text-decoration: none; }
+.user-area { display: flex; align-items: center; }
+
+.google-login-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.google-login-button:hover { background-color: #f5f5f5; }
+.google-login-button img { width: 20px; height: 20px; margin-right: 12px; }
+
+.user-profile { display: flex; align-items: center; gap: 15px; }
+.user-profile .profile-pic { width: 40px; height: 40px; border-radius: 50%; }
+.user-profile .user-name { font-weight: bold; }
+.user-profile .logout-link { color: #d9534f; text-decoration: none; }
+.user-profile .logout-link:hover { text-decoration: underline; }
+
+/* --- Comment Form & Avatars --- */
+.logged-in-as { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 5px; }
+.logged-in-as img { width: 30px; height: 30px; border-radius: 50%; }
+
+.comment .comment-header { display: flex; align-items: center; gap: 10px; }
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.guest-avatar {
+    background-color: #6c757d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* === Login Modal (Pop-up) Stilleri === */
+
+/* Arxadakı qara, yarı-şəffaf fon */
+.modal {
+    display: none; /* İlkin olaraq gizli */
+    position: fixed; /* Səhifə sürüşsə də yerində qalır */
+    z-index: 1000; /* Bütün digər elementlərin üstündə olması üçün */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Qara fon, 60% şəffaflıqla */
+    -webkit-animation-name: fadeIn; /* Animasiya */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Pop-up pəncərənin özü */
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 25px 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* Bağlama düyməsi (X) */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Pop-up içindəki Google Düyməsi */
+.google-login-button-modal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+.google-login-button-modal:hover {
+    background-color: #f5f5f5;
+}
+.google-login-button-modal img {
+    width: 22px;
+    height: 22px;
+    margin-right: 15px;
+}
+
+/* Animasiyalar */
+@-webkit-keyframes slideIn {
+    from {top: -300px; opacity: 0} 
+    to {top: 50%; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {top: -300px; opacity: 0}
+    to {top: 50%; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+/* Rəy altındakı düymələri bir araya gətirmək üçün */
+.comment-footer > div:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Düymələr arası boşluq */
+}
+
+/* WhatsApp Paylaş Düyməsinin Stili */
+.whatsapp-share-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #25D366; /* WhatsApp rəngi */
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.whatsapp-share-btn:hover {
+    background-color: #1DAE54;
+    color: white;
+}
+
+/* Cavablar üçün konteyner və içə-içə görünüş */
+.replies-container {
+    margin-left: 30px;
+    padding-left: 15px;
+    border-left: 2px solid #e9ecef;
+}
+
+/* Cavab yaz düyməsinin stili */
+.reply-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+.reply-btn:hover {
+    color: #0056b3;
+}
+
+/* Cavab formunun stili */
+.reply-form-container {
+    margin-top: 10px;
+}
+.reply-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+.reply-form-actions {
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+}
+.reply-form button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.reply-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
+.reply-form .cancel-reply-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* "X Cavab" Düyməsinin Yeni Stili */
+.toggle-replies-btn {
+    background-color: #eef2f7; /* Açıq mavi-boz fon */
+    color: #4a5568; /* Tünd boz mətn */
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px; /* Tam yumru kənarlar */
+    font-size: 14px;
+    font-weight: 600; /* Bir az daha qalın şrift */
+    cursor: pointer;
+    transition: all 0.2s ease; /* Bütün effektlər üçün yumşaq keçid */
+    margin-left: 5px; /* Digər düymələrdən aralı olması üçün */
+}
+
+/* Düymənin üzərinə gətirdikdə (hover) effekti */
+.toggle-replies-btn:hover {
+    background-color: #dce6f2; /* Fonu bir az tündləşdir */
+    transform: translateY(-1px); /* Yüngül yuxarı qalxma effekti */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Yüngül kölgə */
+}
+
+/* Cavablar AÇIQ olduqda düymənin alacağı stil */
+.toggle-replies-btn.toggled-on {
+    background-color: #007bff; /* Aktiv rəng (göy) */
+    color: white; /* Mətn rəngi (ağ) */
+}
+/* Bildiriş Sistemi Stili */
+.notification-area {
+    position: relative;
+    margin-right: 20px;
+}
+#notification-bell {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+}
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid white;
+}
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 350px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1001;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.notification-header {
+    padding: 12px 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #f0f0f0;
+}
+#notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#notification-list li {
+    border-bottom: 1px solid #f0f0f0;
+}
+#notification-list li a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s;
+}
+#notification-list li a:hover {
+    background-color: #f8f9fa;
+}
+#notification-list li.is_read_0 a {
+    background-color: #e7f3ff; /* Oxunmamışların fonu */
+}
+#notification-list .actor-name {
+    font-weight: bold;
+}
+
+/* ============================================== */
+/* BİLDİRİŞ PƏNCƏRƏSİNİN MOBİL GÖRÜNÜŞÜ ÜÇÜN DÜZƏLİŞ (YEKUN VERSİYA) */
+/* ============================================== */
+
+/* Ekran eni 480px və daha kiçik olduqda bu stillər aktiv olacaq */
+@media (max-width: 480px) {
+    .notification-dropdown {
+        /* DƏYİŞİKLİK: Pəncərəni ekrana "yapışdırırıq" */
+        position: fixed; 
+        
+        /* Yuxarıdan nə qədər məsafədə olacağını təyin edirik (header-in hündürlüyü qədər) */
+        top: 65px; 
+        
+        /* Mərkəzləmə üçün standart və dəqiq üsul */
+        left: 50%;
+        transform: translateX(-50%);
+        
+        /* Enini təyin edirik */
+        width: 95vw;
+        max-width: 400px;
+
+        /* 'right' xüsusiyyətini ləğv etmək vacibdir */
+        right: auto;
+    }
+}
+
+
+
+
+
+/* ================================== */
+/* YENİ HEADER DİZAYNI         */
+/* ================================== */
+
+/* Əsas Header Konteyneri */
+.main-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 10px 0;
+    
+    /* Yuxarıda yapışqan qalması üçün */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Dərinlik effekti */
+    transition: box-shadow 0.3s ease;
+}
+
+/* Əsas Naviqasiya */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Stili */
+.logo {
+    font-size: 1.7rem; /* Bir az daha böyük */
+    font-weight: 700;
+    color: #343a40;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.logo:hover {
+    color: #007bff;
+}
+
+/* İstifadəçi Sahəsi (sağ tərəf) */
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Elementlər arası məsafə */
+}
+
+/* Bildiriş Zəngi Düyməsi */
+#notification-bell {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+#notification-bell:hover {
+    background-color: #f0f0f0;
+}
+
+/* İstifadəçi Profili Bloku */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-pic {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.3;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #495057;
+}
+
+.logout-link {
+    font-size: 13px;
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.logout-link:hover {
+    color: #dc3545;
+    text-decoration: underline;
+}
+
+
+/* MOBİL GÖRÜNÜŞ DÜZƏLİŞİ */
+@media (max-width: 600px) {
+    /* Kiçik ekranlarda "Xoş gəldin, Ad" yazısını gizlədirik */
+    .user-info {
+        display: none;
+    }
+    .user-area {
+        gap: 15px;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+/* ================================== */
+/* YENİ SIRALAMA MENYUSU DİZAYNI      */
+/* ================================== */
+
+/* Sıralama menyusunun ümumi konteyneri */
+.sort-menu form {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* "Sırala:" yazısı ilə qutu arasındakı məsafə */
+}
+
+.sort-menu label {
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Select elementini əhatə edən xüsusi div */
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Select elementinin özünün stilləri */
+.custom-select-wrapper select {
+    /* Brauzerin standart görünüşünü ləğv edirik */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Yeni dizayn */
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px; /* Yumşaq kənarlar */
+    padding: 8px 35px 8px 15px; /* Sağ tərəfdə ox üçün daha çox boşluq */
+    font-size: 15px;
+    font-weight: 500;
+    color: #495057;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Fokuslandıqda (kliklədikdə) effekti */
+.custom-select-wrapper select:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Xüsusi ox işarəsini yaratmaq üçün */
+.custom-select-wrapper::after {
+    content: '▼';
+    font-size: 12px;
+    color: #6c757d;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Bu, oxun üzərinə klikləmənin qarşısını alır ki, select açılsın */
+}
+
+
+
+
+
+
+
+/* ============================================== */
+/* POPULYAR ŞƏRH BLOKU ÜÇÜN YENİ VƏ DƏYİŞDİRİLMİŞ STİLLƏR */
+/* ============================================== */
+
+/* Populyar şərh blokunun özü (rəng və kölgə olduğu kimi qalır) */
+.featured-comment {
+    max-width: 650px;
+    margin: 2.5rem auto;
+    background: linear-gradient(135deg, #fff5e1, #ffe4c4);
+    border: 2px solid #ffc880;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
+    text-align: center; /* İçindəki hər şeyi mərkəzə gətirir */
+}
+
+/* YENİ: Blokun içindəki şəkil və yazı qrupu */
+.featured-comment-figure {
+    margin: 1rem 0; /* Yuxarı və aşağıdan boşluq */
+    padding: 0;
+}
+
+/* YENİ: Kiçildilmiş şəkil stili */
+.featured-comment-image {
+    max-width: 120px; /* Şəklin maksimal enini kiçildir (dəyişə bilərsiniz) */
+    border-radius: 8px;
+    margin-bottom: 0.1rem; /* Altındakı yazı ilə arasına boşluq qoyur */
+}
+
+/* Hərəkətli yazının ölçüsünü bu blok üçün kiçildir */
+.featured-comment .sticker-caption {
+    font-size: 1.2rem; /* Yazı ölçüsünü kiçildir */
+    /* Digər bütün animasiya xüsusiyyətləri olduğu kimi qalacaq */
+}
+
+/* YENİ: İstifadəçi adı və bəyəni sayını saxlayan blok */
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ffc880; /* Üstünə ayırıcı xətt çəkir */
+    font-size: 1rem;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.comment-likes {
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+
+
+
+.sticker-caption {
+    font-family: 'Baloo', Arial, sans-serif; /* Daha müasir font */
+    font-size: 2.2rem; /* Daha böyük ölçü */
+    font-weight: 800; /* Daha qalın */
+    letter-spacing: -0.5px; /* Hərflər arası məsafə */
+    line-height: 1.3;
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    
+    /* Yazını daha geniş göstərmək */
+    transform: scaleX(1.2);
+    transform-origin: center;
+    
+    /* Instagram tərzində gradient */
+    background: linear-gradient(45deg, 
+        #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #a20e9b, #8a0d9e);
+    background-size: 400% 400%;
+    
+    /* Gradienti mətnə tətbiq etmək */
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Daha dinamik animasiya */
+    animation: instagram-flow 6s ease infinite;
+    
+    /* Əlavə effektlər */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Daha canlı animasiya */
+@keyframes instagram-flow {
+    0% {
+        background-position: 0% 50%;
+        transform: scaleX(1.2) translateY(0);
+    }
+    25% {
+        background-position: 50% 100%;
+    }
+    50% {
+        background-position: 100% 50%;
+        transform: scaleX(1.22) translateY(-2px);
+    }
+    75% {
+        background-position: 50% 0%;
+    }
+    100% {
+        background-position: 0% 50%;
+        transform: scaleX(1.2) translateY(0);
+    }
+}
+
+/* Hover effekti əlavə etmək istəsəniz */
+.sticker-caption:hover {
+    animation-duration: 4s;
+    transform: scaleX(3.22);
+}
+
+
+/* ====================================================== */
+/* POPULYAR ŞƏRH BLOKUNDAKI YAZININ ÖLÇÜSÜNÜ KİÇİLDƏN STİL */
+/* ====================================================== */
+
+/* Bu kod, eyni effektin "Ən Populyar İdea" blokunda daha kiçik görünməsini təmin edir */
+.featured-comment .sticker-caption {
+    font-size: 1rem; /* Yazı ölçüsünü kiçildir */
+    padding-top: 0; /* Yuxarıdakı əlavə boşluğu ləğv edir */
+    
+}
+
+/* Populyar rəy blokundakı müəllif məlumatları üçün stil */
+.featured-comment-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(253, 230, 138, 0.5); /* Açıq sarı ayırıcı xətt */
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Şəkil və ad arası boşluq */
+}
+
+.author-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-avatar.guest-avatar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.author-name {
+    font-weight: bold;
+    color: #555;
+}
+
+
+/* === YAZI QUTUSU VƏ HƏRF SAYĞACI ÜÇÜN YENİ STİLLƏR === */
+
+/* Textarea və sayğacı saxlayan əsas konteyner */
+.textarea-wrapper {
+    position: relative; /* İçindəki elementləri buna nəzərən mövqeləndirmək üçün */
+}
+
+/* Yazı qutusunun özü üçün əlavə stillər */
+#comment-form textarea {
+    /* Sayğacın altda qalmaması üçün aşağıdan əlavə boşluq veririk */
+    padding-bottom: 25px; 
+    transition: border-color 0.3s ease; /* Rəng dəyişimini yumşaq edir */
+}
+
+/* Sayğacın özünün stili və mövqeyi */
+#char-counter {
+    position: absolute; /* Ana konteynerə nəzərən mövqelənir */
+    bottom: 12px;       /* Aşağıdan 12px məsafədə */
+    right: 15px;        /* Sağdan 15px məsafədə */
+    font-size: 14px;
+    color: #888;
+    pointer-events: none; /* Klikləmənin qarşısını alır ki, textarea fokusdan çıxmasın */
+}
+
+/* Limit dolduqda yazı qutusunun çərçivəsini qırmızı edən sinif */
+.textarea-wrapper.has-error textarea {
+    border-color: #dc3545 !important; /* Qırmızı rəngi tətbiq edir */
+}
+
+/* Limit dolduqda sayğacın rəngini qırmızı edir */
+.textarea-wrapper.has-error #char-counter {
+    color: #dc3545;
+}
+
+/* === ADSENSE REKLAM KONTEYNERİ ÜÇÜN STİLLƏR === */
+
+.ad-wrapper {
+    position: relative; /* İçindəki elementlərin düzgün mövqelənməsi üçün vacibdir */
+    overflow: hidden;   /* Bu, SÜRÜŞDÜRMƏ PROBLEMİNİ HƏLL EDİR */
+    width: 100%;        /* Konteynerin həmişə öz yerinin enini tutmasını təmin edir */
+    margin: 25px auto;  /* Reklamın yuxarı və aşağısında boşluq yaradır */
+    text-align: center; /* Reklam bloku daha dar olarsa, onu mərkəzə gətirir */
+    min-height: 50px;   /* Reklam yüklənənə qədər yerinin boş qalıb sıçramaması üçün minimum hündürlük */
+}
+
+
+
+
+
+/* === WHATSAPP NÖMRƏ QUTUSU ÜÇÜN STİLLƏR === */
+.whatsapp-input-wrapper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #fff; /* Ümumi çərçivə */
+    border-radius: 5px;
+    background-color: white;
+    padding: 0;
+}
+
+.whatsapp-prefix {
+    padding: 8px 0 8px 10px;
+    background-color: #e9ecef; /* Prefiks üçün fərqli fon */
+    color: #495057;
+    font-weight: bold;
+    border-right: 1px solid #ccc; /* Prefiks ilə input arası ayırıcı xətt */
+}
+
+/* Input qutusunun öz çərçivəsini ləğv edirik ki, ümumi çərçivə görünsün */
+#whatsapp_number_input {
+    border: none !important;
+    outline: none !important; /* Fokuslananda çıxan çərçivəni də ləğv edir */
+    border-radius: 0 5px 5px 0 !important; /* Yalnız sağ küncləri yumru edir */
+}
+
+
+
+/* === YARIŞMA BİTİŞ VƏ QALİBLƏR BLOKU STİLLƏRİ === */
+.contest-finished-box {
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 5px solid #facc15;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+.contest-finished-box h2 {
+    color: #ca8a04;
+}
+.winners-block {
+    margin-bottom: 30px;
+}
+.winners-block h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.winner-card {
+    display: grid;
+    grid-template-columns: 50px 1fr auto;
+    grid-template-areas: "place info prize" "place comment comment";
+    gap: 10px 15px;
+    align-items: center;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.winner-card.place-1 { border-left: 5px solid #ffd700; /* Gold */ }
+.winner-card.place-2 { border-left: 5px solid #c0c0c0; /* Silver */ }
+.winner-card.place-3 { border-left: 5px solid #cd7f32; /* Bronze */ }
+
+.winner-place { grid-area: place; font-size: 28px; font-weight: bold; text-align: center; color: #495057; }
+.winner-info { grid-area: info; display: flex; align-items: center; gap: 10px; }
+.winner-avatar { width: 35px; height: 35px; border-radius: 50%; }
+.winner-name { font-weight: bold; }
+.winner-comment { grid-area: comment; font-style: italic; color: #343a40; }
+.winner-prize { grid-area: prize; font-weight: bold; color: #28a745; text-align: right; }
+
+/* === YARIŞMA BİTİŞ XƏBƏRDARLIĞI ÜÇÜN STİL === */
+.contest-warning {
+    background-color: #fff3cd; /* Açıq sarı fon */
+    color: #664d03; /* Tünd sarı mətn */
+    border: 1px solid #ffecb5;
+    border-left: 5px solid #ffc107; /* Qalın sarı sol xətt */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px; /* Rəy formasından əvvəl boşluq */
+}
+/* === GERİ SAYIM ÜÇÜN YENİ VƏ MÜSTƏQİL DİZAYN === */
+
+#contest-timer {
+    display: block;
+    width: 100%;
+    box-sizing: border-box; /* Padding və border-in enə təsir etməməsi üçün */
+    background-color: #2c3e50; /* Tünd göy-boz fon */
+    color: #ffffff; /* Ağ mətn */
+    text-align: center;
+    padding: 15px;
+    margin: 25px 0 15px 0; /* Yuxarı və aşağıdan səliqəli boşluq */
+    border-radius: 8px;
+    font-size: 1.2em; /* Bir az böyük şrift */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+}
+
+#contest-timer .timer-icon {
+    margin-right: 8px;
+}
+
+
+/* === LİDERLƏR LÖVHƏSİ (AKTİVLİK TABLOSU) ÜÇÜN STİLLƏR === */
+.leaderboard-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.leaderboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.leaderboard-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.leaderboard-card h3 {
+    text-align: left;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #0056b3;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 10px;
+}
+
+.leaderboard-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.leaderboard-card li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+.leaderboard-card li:not(:last-child) {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.leaderboard-card .place {
+    font-weight: bold;
+    font-size: 16px;
+    color: #6c757d;
+    width: 25px;
+}
+
+.leaderboard-card img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.leaderboard-card .name {
+    font-weight: 500;
+    color: #343a40;
+    text-decoration: none;
+    flex-grow: 1; /* Ad üçün bütün boş sahəni tutur */
+}
+.leaderboard-card a.name:hover {
+    text-decoration: underline;
+}
+
+.leaderboard-card .stat {
+    font-weight: bold;
+    color: #007bff;
+    white-space: nowrap; /* Rəqəmin yanındakı ikonun alt sətirə düşməməsi üçün */
+}
+
+
+/* === "NECƏ İŞLƏYİR?" BÖLMƏSİ ÜÇÜN YENİLƏNMİŞ STİLLƏR === */
+
+.how-it-works-section {
+    background: #f5f7fa;
+    border-radius: 12px;
+    padding: 30px 20px; /* Yanlardan boşluğu bir az azaldırıq */
+    margin: 30px 0;
+    text-align: center;
+}
+
+.how-it-works-section h2 {
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+.how-it-works-section .intro-text {
+    font-size: 18px;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+/* Slayderin özü üçün əlavə stil */
+.how-it-works-slider {
+    padding-bottom: 40px !important; /* Altındakı nöqtələr üçün yer ayırır */
+}
+
+/* Slaydın içindəki kartlar */
+.step-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-top: 4px solid #007bff;
+    /* Kartların hündürlüyünü eyni saxlamaq üçün */
+    height: 100%; 
+    box-sizing: border-box;
+}
+
+.step-card .step-icon {
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.step-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.step-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Slayderin aktiv nöqtəsinin rəngini saytın rənginə uyğunlaşdırırıq */
+.swiper-pagination-bullet-active {
+    background-color: #007bff !important;
+}
+
+
+/* === PROFİL SƏHİFƏSİ ÜÇÜN STİLLƏR === */
+.profile-container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.profile-header {
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+.profile-header h1 { margin: 10px 0 5px 0; }
+.profile-header p { margin: 0; color: #6c757d; }
+
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.stat-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+.stat-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #6c757d;
+    text-transform: uppercase;
+}
+.stat-box .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #007bff;
+}
+
+.recent-activity h2 {
+    text-align: left;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+}
+.activity-list { list-style: none; padding: 0; margin: 0; }
+.activity-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+.activity-list li:not(:last-child) { border-bottom: 1px dashed #e0e0e0; }
+.activity-list .activity-text a {
+    color: #343a40;
+    text-decoration: none;
+    font-weight: 500;
+}
+.activity-list .activity-text a:hover { text-decoration: underline; }
+.activity-list .activity-meta {
+    display: block;
+    font-size: 13px;
+    color: #6c757d;
+}
+.activity-list .activity-date { font-size: 14px; color: #6c757d; white-space: nowrap; }
+
+/* Headerdəki profil linki üçün */
+.profile-link-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+.profile-link-wrapper:hover {
+    background-color: #f8f9fa;
+}
+.view-profile-link {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+
+/* === DİNAMİK BİLDİRİŞ (TOAST) SİSTEMİ === */
+#toast-container{position:fixed;bottom:20px;right:20px;z-index:1050;}.toast{display:flex;align-items:center;min-width:300px;max-width:350px;background-color:#2c3e50;color:#fff;padding:15px 20px;border-radius:8px;box-shadow:0 5px 15px rgba(0,0,0,.2);margin-top:10px;opacity:0;transform:translateY(20px);transition:all .3s ease-out}.toast.show{opacity:1;transform:translateY(0)}.toast-icon{font-size:24px;margin-right:15px}.toast-message{font-size:15px;line-height:1.4}
+/* === HEADER-DƏ XAL GÖSTƏRİCİSİ === */
+.user-score-display{display:flex;align-items:center;background-color:#fffbeb;color:#92400e;padding:5px 10px;border-radius:20px;font-size:14px;font-weight:600;border:1px solid #fde68a}
+
+
+/* === "LİDER VS MEYDAN OXUYAN" BLOKU STİLLƏRİ === */
+.vs-block-container {
+    background-color: #1f2937; /* Tünd fon */
+    padding: 10px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+.vs-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.vs-block__player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 45%;
+}
+.vs-block__player--challenger {
+    justify-content: flex-end;
+}
+.vs-block__user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s;
+}
+.vs-block__user-info:hover {
+    opacity: 0.8;
+}
+.vs-block__user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #4f46e5; /* Lider üçün mavi çərçivə */
+}
+.vs-block__player--challenger .vs-block__user-info img {
+    border-color: #be123c; /* Meydan oxuyan üçün qırmızı çərçivə */
+}
+.vs-block__user-info span {
+    font-weight: 600;
+    font-size: 15px;
+}
+.vs-block__score {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 15px;
+}
+.vs-block__score--leader {
+    background-color: #4f46e5;
+}
+.vs-block__score--challenger {
+    background-color: #be123c;
+}
+
+.vs-block__center {
+    font-size: 20px;
+    font-weight: 900;
+    color: #f59e0b; /* Qızılı rəng */
+    transform: skewX(-10deg);
+}
+
+/* === "VS BLOKU" DİNAMİK KEÇİD XƏTTİ ÜÇÜN STİL === */
+.vs-block__progress {
+    max-width: 700px;
+    margin: 8px auto 0 auto;
+    height: 10px; /* Hündürlüyü bir az artırırıq */
+    border-radius: 5px;
+    overflow: hidden;
+    /* Arxa fon rəngi artıq PHP tərəfindən (inline style) verilir */
+    border: 2px solid #374151; /* Ətrafına çərçivə əlavə edirik */
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5); /* İçəri doğru kölgə effekti */
+}
+/* ... mövcud bütün stillərin sonunda ... */
+
+.vs-block-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.vs-block-title h2 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    color: #f59e0b; /* Qızılı rəng */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.vs-block-title p {
+    margin: 0;
+    font-size: 14px;
+    color: #d1d5db; /* Açıq boz */
+    opacity: 0.9;
+}
+/* Mövcud bütün CSS kodları olduğu kimi qalır... */
+
+.vs-block-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.vs-block-title h2 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    color: #f59e0b; /* Qızılı rəng */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.vs-block-title p {
+    margin: 0;
+    font-size: 14px;
+    color: #d1d5db; /* Açıq boz */
+    opacity: 0.9;
+}
+
+/* YENİ LİNK ÜÇÜN STİLLƏR */
+.vs-block-cta {
+    text-align: center;
+    margin-top: 10px;
+}
+.how-to-earn-points-link {
+    display: inline-block;
+    color: #9ca3af; /* Tünd boz */
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.how-to-earn-points-link:hover {
+    color: #e5e7eb; /* Açıq boz */
+    text-decoration: underline;
+}
+
+/* Məqalə səhifəsi üçün əlavə stillər */
+.article-section ul {
+    list-style-type: '✔️ ';
+    padding-left: 20px;
+}
+.article-section ul li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+.article-section ul ul {
+    list-style-type: '➡️ ';
+    margin-top: 10px;
+}
+
+/* ... mövcud bütün stillərin sonunda ... */
+
+/* === "VS BLOKU" MOBİL UYĞUNLUQ DÜZƏLİŞLƏRİ === */
+@media (max-width: 600px) {
+    .vs-block__player {
+        gap: 8px; /* Elementlər arası boşluğu azaldırıq */
+    }
+
+    .vs-block__user-info img {
+        width: 32px;  /* Şəkli 40px-dən 32px-ə kiçildirik */
+        height: 32px;
+    }
+
+    .vs-block__user-info span {
+        font-size: 14px; /* Adın şriftini bir az kiçildirik */
+
+        /* ƏN VACİB HİSSƏ: Ad çox uzun olarsa, kəsilməsi üçün */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px; /* Ad üçün maksimal en (lazım olarsa dəyişə bilərsiniz) */
+    }
+
+    .vs-block__score {
+        font-size: 13px; /* Xal yazısını kiçildirik */
+        padding: 4px 8px;
+    }
+    
+    .vs-block-title h2 {
+        font-size: 16px; /* Başlığı kiçildirik */
+    }
+    .vs-block-title p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    /* Çox kiçik ekranlar üçün əlavə düzəliş */
+    .vs-block__user-info span {
+        max-width: 60px; /* Ad üçün yeri daha da azaldırıq */
+    }
+    .vs-block__score {
+        font-size: 12px;
+    }
+}
+
+/* === YENİ FIRSATLAR BANNERİNİN YENİ STİLLƏRİ === */
+.new-opportunity-banner {
+    position: relative; /* Bağlama düyməsini mövqeləndirmək üçün */
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 15px 40px 15px 20px; /* Sağ tərəfdə düymə üçün yer saxlayırıq */
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+.new-opportunity-banner h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+.new-opportunity-banner p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 15px;
+}
+
+/* Banner içindəki bağlama düyməsi (X) */
+.close-banner-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+.close-banner-btn:hover {
+    opacity: 1;
+}
+
+/* === RƏY BAŞLIĞINDAKI PROFİL LİNKİNİN STİLİ === */
+.comment-author-link {
+    color: inherit; /* Valideynindən gələn rəngi alsın (qara) */
+    text-decoration: none; /* Alt xətti ləğv et */
+    font-weight: bold; /* Qalın şrifti qoruyaq */
+}
+
+.comment-author-link:hover {
+    text-decoration: underline; /* Üzərinə gəldikdə alt xətt görünsün */
+}
+
+/* === STİKER KARTINDA ƏN POPULYAR RƏY ÜÇÜN STİLLƏR === */
+.top-comment-preview {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #555;
+    position: relative;
+    border-left: 3px solid #007bff;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.sticker-card-wrapper:hover .top-comment-preview {
+    background-color: #eef2f7;
+    border-left-color: #0056b3;
+}
+
+.top-comment-preview .comment-icon {
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    font-size: 32px;
+    line-height: 1;
+    opacity: 0.1;
+    font-family: Georgia, serif;
+}
+
+.top-comment-preview .comment-text {
+    margin: 0 0 10px;
+    font-style: italic;
+    min-height: 40px; /* Kartların eyni hündürlükdə qalmasına kömək edir */
+}
+
+.top-comment-preview .comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.top-comment-preview .comment-author {
+    color: #333;
+    font-weight: 500;
+}
+
+.top-comment-preview .likes-badge {
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #eee;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* === STİKER KARTINDA STATUS NİŞANI === */
+.sticker-card {
+    position: relative; /* Nişanı mövqeləndirmək üçün vacibdir */
+    overflow: hidden; /* Nişanın kənara çıxan hissələrini gizlətmək üçün */
+}
+
+.sticker-status-badge {
+    position: absolute;
+    top: 10px;
+    right: -35px;
+    background-color: #6c757d; /* Standart boz rəng */
+    color: white;
+    padding: 7px 10px;
+    width: 150px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 2;
+    transform: rotate(45deg); /* Lenti diaqonal çevirir */
+}
+
+/* Bitmiş statusu üçün xüsusi qırmızı rəng */
+.sticker-status-badge.status-finished {
+    background-color: #dc3545; 
+}
+
+/* === KARTLARI SƏLİQƏYƏ SALAN YENİ STİLLƏR === */
+
+/* Bütün kartın əsas tutucusu */
+.sticker-card-wrapper {
+    display: flex;
+    flex-direction: column; /* Elementləri şaquli düzür (şəkil, mətn, düymə) */
+    height: 100%; /* Hər kartın öz qrid xanasını tam doldurmasını təmin edir */
+}
+
+/* Kartın kliklənəbilən əsas məzmun hissəsi */
+.sticker-card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Bu hissənin böyüyərək boş yeri doldurmasını təmin edir */
+    text-decoration: none;
+    color: inherit;
+}
+.sticker-card-link-main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-decoration: none;
+    color: inherit;
+}
+.sticker-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Mətn blokunun da böyüməsini təmin edir */
+}
+/* Düymənin olduğu alt hissə */
+.sticker-action-area {
+    padding-top: 0;
+    flex-grow: 0; /* Bu hissənin böyüməməsini, sonda qalmasını təmin edir */
+}
+
+/* Rəy önizləməsindəki profil şəkli üçün stil */
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Şəkil və ad arasında boşluq */
+}
+
+.author-avatar-preview {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
