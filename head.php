@@ -78,7 +78,7 @@ $base_url = '/fikir';
                     <a href="' . $base_url . '/puan-kazan.php" style="color: white; font-weight: bold; text-decoration: underline;">Puanları Topla!</a>
                 </p>
             </div>
-        </div>';
+        </div>'; 
 
         unset($_SESSION['show_new_day_banner']);
     }
@@ -90,4 +90,4 @@ $base_url = '/fikir';
     if (isset($_SESSION['user_id']) && empty($_SESSION['user_whatsapp_number'])) {
         // ...
     }
-    ?> t
+    ?> 
