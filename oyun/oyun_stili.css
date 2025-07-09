@@ -1,5 +1,6 @@
 /* OYUN ÜÇÜN ÜMUMİ VƏ SINAQ STİLLƏRİ */
 .challenge-wrapper { text-align: center; max-width: 550px; margin: 20px auto; padding: 25px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.timer-display { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
 .progress-bar { width: 100%; background-color: #e9ecef; border-radius: 20px; height: 10px; margin-bottom: 20px; overflow: hidden; }
 .progress-bar-inner { width: 0%; background: linear-gradient(90deg, #007bff, #00c6ff); border-radius: 20px; height: 100%; transition: width 0.5s ease; }
 .challenge-stage { min-height: 170px; display: flex; flex-direction: column; justify-content: center; }

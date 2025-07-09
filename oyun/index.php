@@ -30,6 +30,7 @@ $can_play = (!isset($user_bonus_data['last_daily_bonus_date']) || $user_bonus_da
                 <p class="text-muted" style="color: #6c757d; margin-top: -10px; margin-bottom: 20px;">
                     Sınağı ən sürətli şəkildə tamamlayaraq <strong>100 xala qədər</strong> bonus qazanın!
                 </p>
+                <div id="timer" class="timer-display">00:00</div>
                 <div class="progress-bar">
                     <div id="progress-bar-inner" class="progress-bar-inner"></div>
                 </div>
