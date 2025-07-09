@@ -101,7 +101,8 @@ $comments_stmt->close();
                     <?php foreach($recent_comments as $comment): ?>
                         <li>
                             <div class="activity-text">
-                                <a href="<?php echo $base_url . '/' . $comment['sticker_id'] . '#comment-' . $comment['id']; ?>">
+                                <a href="<?php echo $base_url; ?>/<?php echo $comment['sticker_id']; ?>#comment-<?php echo $comment['id']; ?>">
+                               
                                     "<?php echo htmlspecialchars(mb_strimwidth($comment['comment'], 0, 80, "...")); ?>"
                                 </a>
                                 <span class="activity-meta">
