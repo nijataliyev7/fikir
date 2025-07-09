@@ -73,7 +73,7 @@ $stickers_result = $conn->query($sql);
                 </div>
                 <?php // ===== DÜZƏLİŞ 2: "Fikir Bildir" düyməsi ayrıca bir blokda, əsas linkdən kənarda yerləşdirilib ===== ?>
                 <div class="sticker-info sticker-action-area">
-                    <a href="<?php echo $sticker['id']; ?>" class="comment-button">✍️ Fikir Bildir</a>
+                    <a href="<?php echo $sticker['id']; ?>?sort=best&page=1" class="comment-button">✍️ Fikir Bildir</a>
                 </div>
             </div>
         <?php endwhile; ?>
