@@ -1,4 +1,22 @@
 <?php
+if (strpos($_SERVER['REQUEST_URI'], 'view_sticker.php') !== false) {
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+        $sticker_id = $_GET['id'];
+        $base_url = '/fikir'; // Layihə qovluğu
+        
+        // Mövcud query string-də id-dən başqa parametrlər varsa, onları da yeni URL-ə əlavə edək.
+        $query_params = http_build_query(array_diff_key($_GET, array_flip(['id'])));
+        
+        $pretty_url = $base_url . '/' . $sticker_id;
+        if (!empty($query_params)) {
+            $pretty_url .= '?' . $query_params;
+        }
+
+        // 301 Permanent Redirect (SEO üçün ən yaxşı üsul)
+        header("Location: " . $pretty_url, true, 301);
+        exit();
+    }
+}
 // Mümkün xətaları ekranda göstərmək üçün
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
