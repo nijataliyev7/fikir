@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             finishChallenge();
             return;
         }
+        if (soundEnabled && currentStageIndex > 0) {
+            keyClickSound.currentTime = 0;
+            keyClickSound.play();
+        }
         const stage = stages[currentStageIndex];
         const progressPercentage = (currentStageIndex / stages.length) * 100;
         progressBar.style.width = `${progressPercentage}%`;
