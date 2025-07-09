@@ -27,5 +27,4 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
             <button type="submit">Daxil Ol</button>
         </form>
     </div>
-</body>
-</html>
+</body></html>

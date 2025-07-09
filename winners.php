@@ -102,5 +102,4 @@ $winners_result = $winners_stmt->get_result();
 </div>
 
 <?php
-require 'admin_footer.php';
-?>
+require 'admin_footer.php';?>

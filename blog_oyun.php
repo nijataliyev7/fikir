@@ -53,5 +53,4 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
     <div style="text-align: center; margin-top: 30px;">
         <a href="<?php echo $base_url; ?>/" class="comment-button" style="text-decoration: none; display: inline-block; width: auto;">Ana Sayfaya Dön</a>
-    </div>
-    </div>
+    </div>    </div>

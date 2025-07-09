@@ -67,5 +67,4 @@ echo json_encode([
     'final_url' => $final_url
 ]);
 
-$conn->close();
-?>
+$conn->close();?>

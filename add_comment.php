@@ -156,5 +156,4 @@ else {
     echo json_encode(['status' => 'login_required']);
 }
 
-$conn->close();
-exit();
+$conn->close();exit();

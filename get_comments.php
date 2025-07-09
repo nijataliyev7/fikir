@@ -197,5 +197,4 @@ function generate_comment_html($comment, $is_admin, $is_newest = false, $is_most
                 <p class='comment-body'>" . nl2br(htmlspecialchars($comment['comment'])) . "</p>
                 <div class='comment-footer'><button class='like-btn' data-id='{$comment['id']}' {$disabled}>❤️ <span class='like-count'>{$comment['likes']}</span></button>{$admin_buttons}</div>
             </div>";
-}
-?>
+}?>

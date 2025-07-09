@@ -77,5 +77,4 @@ function handle_gamification_event($conn, $event_type, $actor_user_id, $data = [
             break;
     }
     
-    return $points_earned;
-}
+    return $points_earned;}

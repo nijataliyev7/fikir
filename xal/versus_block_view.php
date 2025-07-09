@@ -53,5 +53,4 @@ if ($vs_data):
     <div class="vs-block-cta">
         <a href="<?php echo $base_url; ?>/puan-kazan.php" class="how-to-earn-points-link">⭐️ Xalları Topla</a>
     </div>
-</div>
-<?php endif; ?>
+</div><?php endif; ?>

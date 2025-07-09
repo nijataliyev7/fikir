@@ -43,5 +43,4 @@ if ($stmt->execute()) {
 } else {
     header("Location: manage_stickers.php?error=Yarışmanı yenidən başlatmaq mümkün olmadı.");
 }
-exit();
-?>
+exit();?>

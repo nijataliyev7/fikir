@@ -19,5 +19,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['settings']) && is_arra
     }
     $stmt->close();
     header("Location: settings.php?success=1");
-    exit();
-}?>
+    exit();}?>
