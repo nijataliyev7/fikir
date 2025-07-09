@@ -44,7 +44,7 @@ if (!$daily_check_done) {
         $update_stmt->execute();
         $update_stmt->close();
         
-        // ================== ƏSAS DÜZƏLİŞ BURADADIR ==================
+        // ================== ƏSAS DƏYİŞİKLİK BURADADIR ==================
         // Gün uğurla yeniləndikdən sonra, bannerin göstərilməsi üçün session-a bir flaq qoyuruq.
         $_SESSION['show_new_day_banner'] = true;
         // ==========================================================
