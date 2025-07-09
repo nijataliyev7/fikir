@@ -59,9 +59,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!stageContainer) return;
 
     const progressBar = document.getElementById('progress-bar-inner');
+    const timerEl = document.getElementById('timer');
+    let timerInterval = null;
     let stages = [];
     let currentStageIndex = 0;
     const startTime = Math.floor(Date.now() / 1000);
+
+    function startTimer() {
+        if (!timerEl) return;
+        timerInterval = setInterval(() => {
+            const elapsed = Math.floor(Date.now() / 1000) - startTime;
+            const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+            const seconds = String(elapsed % 60).padStart(2, '0');
+            timerEl.textContent = `${minutes}:${seconds}`;
+        }, 1000);
+    }
 
     function renderCurrentStage() {
         if (currentStageIndex >= stages.length) {
@@ -117,6 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     function finishChallenge() {
         progressBar.style.width = '100%';
+        if (timerInterval) clearInterval(timerInterval);
         stageContainer.innerHTML = `<h2 class="game-message success">Təbriklər! Sınağı tamamladınız!</h2><p>Xalınız hesablanır...</p>`;
         
         $.ajax({
@@ -139,6 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (data.error) throw new Error(data.error);
             stages = data.stages;
             renderCurrentStage();
+            startTimer();
         } catch (error) {
             stageContainer.innerHTML = `<p class="game-message error">Sınaq yüklənərkən xəta baş verdi.</p>`;
         }
