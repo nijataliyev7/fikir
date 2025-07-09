@@ -72,5 +72,4 @@ $can_play = (!isset($user_bonus_data['last_daily_bonus_date']) || $user_bonus_da
 // Bu, ana script.js-dən əvvəl yüklənməsini təmin edir, əgər bir asılılıq olarsa.
 // Əgər asılılıq yoxdursa, footer-dən sonra da yükləmək olar.
 echo '<script src="oyun_skripti.js?v=' . filemtime(__DIR__ . '/oyun_skripti.js') . '"></script>';
-require_once PROJECT_ROOT . '/footer.php'; 
-?>
+require_once PROJECT_ROOT . '/footer.php'; ?>

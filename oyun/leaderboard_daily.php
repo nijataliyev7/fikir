@@ -69,5 +69,4 @@ $stmt->close();
         </div>
     <?php 
     endif;
-    ?>
-</div>
+    ?></div>

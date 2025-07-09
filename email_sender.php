@@ -38,5 +38,4 @@ $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           // SSL istifadə olun
         error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
         return false;
     }
-}
-?>
+}?>

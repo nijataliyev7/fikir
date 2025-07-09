@@ -71,5 +71,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sticker_file'])) {
         header("Location: manage_stickers.php?error=" . urlencode($error));
         exit();
     }
-}
-?>
+}?>

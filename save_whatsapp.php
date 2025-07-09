@@ -31,5 +31,4 @@ if (isset($_POST['whatsapp_number']) && !empty(trim($_POST['whatsapp_number'])))
     echo json_encode(['status' => 'error', 'message' => 'Nömrə boş ola bilməz.']);
 }
 
-$conn->close();
-?>
+$conn->close();?>

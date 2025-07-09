@@ -21,5 +21,4 @@ if ($stmt->affected_rows > 0) {
 } else {
     header("Location: manage_stickers.php?error=Yarışmanı bitirmək mümkün olmadı (bəlkə artıq bitib).");
 }
-exit();
-?>
+exit();?>

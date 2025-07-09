@@ -118,5 +118,4 @@ if (isset($_SESSION['user_id'])) {
         <p>Başarılar!</p>
     </div>
 </div>
-
 <?php require 'footer.php'; ?>

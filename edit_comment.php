@@ -52,5 +52,4 @@ if (!$is_admin && $current_user_id != $comment_owner_id) {
             <button type="submit">Yadda Saxla</button>
             <a href="javascript:history.back()" class="back-link">Geri Qayıt</a>
         </form>
-    </div>
-</body></html>
+    </div></body></html>

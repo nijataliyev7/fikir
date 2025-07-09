@@ -45,5 +45,4 @@ function get_versus_data($conn) {
     return [
         'leader' => $leader,
         'challenger' => $challenger
-    ];
-}
+    ];}

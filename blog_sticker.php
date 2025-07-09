@@ -39,5 +39,4 @@
     <h3>4. Mesajlaşmaya Uygun mu?</h3>
     <p>Son olarak, yazdığınız fikrin gerçek bir sohbette (WhatsApp, Instagram vb.) kullanılabilir olup olmadığını düşünün. Bir arkadaşınızın mesajına bu sticker ve metinle cevap verir miydiniz? Eğer cevabınız "evet" ise, doğru yoldasınız demektir. Çünkü en iyi sticker yorumları, aynı zamanda en kullanışlı olanlardır.</p>
     
-    <p><strong>Unutmayın, en iyi sticker fikri, en karmaşık olan değil, en samimi ve en "yerinde" olandır. Şimdi bu ipuçlarıyla yaratıcılığınızı serbest bırakın ve en iyi fikirlerinizi paylaşın!</strong></p>
-</div>
+    <p><strong>Unutmayın, en iyi sticker fikri, en karmaşık olan değil, en samimi ve en "yerinde" olandır. Şimdi bu ipuçlarıyla yaratıcılığınızı serbest bırakın ve en iyi fikirlerinizi paylaşın!</strong></p></div>

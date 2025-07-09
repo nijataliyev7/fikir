@@ -101,5 +101,4 @@ function generate_advanced_pagination($page, $total_pages, $sticker_id, $sort) {
     }
     if ($page < $total_pages) { $html .= '<li class="page-item"><a class="page-link" href="'.$base_url.'&page='.($page+1).'">Növbəti &raquo;</a></li>';} else { $html .= '<li class="page-item disabled"><span class="page-link">Növbəti &raquo;</span></li>';}
     $html .= '</ul>'; return $html;
-}
-?>
+}?>

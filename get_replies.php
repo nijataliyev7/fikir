@@ -40,5 +40,4 @@ $output .= "</div>";
 $stmt_replies->close();
 $conn->close();
 
-echo $output;
-?>
+echo $output;?>

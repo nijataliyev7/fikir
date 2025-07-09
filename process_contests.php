@@ -41,5 +41,4 @@ if ($finished_contests_result->num_rows > 0) {
     }
 }
 echo "Finished processing contests.\n";
-$conn->close();
-?>
+$conn->close();?>

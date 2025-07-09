@@ -83,5 +83,4 @@ require 'head.php';
 
 <?php
 // Bütün səhifələrdə lazım olan footer.php faylını çağırırıq.
-require 'footer.php';
-?>
+require 'footer.php';?>

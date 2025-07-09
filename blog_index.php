@@ -69,5 +69,4 @@
     
     <p>Unutmayın, dünyanın en büyük icatları ve en etkileyici sanat eserleri bir zamanlar sadece bir kişinin zihnindeki "fikir" idi. Fikirlerinizi paylaşmaktan ve başkalarının fikirlerinden ilham almaktan çekinmeyin. Çünkü bir sonraki büyük keşif, sizin birleştireceğiniz noktalarda gizlenmiş olabilir!</p>
 </div> <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-       
+           

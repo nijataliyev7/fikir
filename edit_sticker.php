@@ -41,5 +41,4 @@ if (!$sticker) { die("Stiker tapılmadı."); }
         <a href="manage_stickers.php" class="back-link">Geri Qayıt</a>
     </form>
 </div>
-</body>
-</html>
+</body></html>

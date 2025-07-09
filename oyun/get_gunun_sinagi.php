@@ -38,5 +38,4 @@ $_SESSION['gunun_sinagi_tarixi'] = $today;
 foreach ($challenge_data['stages'] as &$stage) {
     unset($stage['cavab']); // Cavabları istifadəçiyə göndərmirik
 }
-
 echo json_encode($challenge_data);
