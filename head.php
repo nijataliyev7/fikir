@@ -29,6 +29,7 @@ $base_url = '/fikir';
 </head>
 <body data-flash-message="<?php echo isset($_SESSION['flash_notification']) ? htmlspecialchars($_SESSION['flash_notification']) : ''; ?>">
     <?php 
+        // "Toast" bildirişi üçün olan flash mesajı burada silirik
         if (isset($_SESSION['flash_notification'])) { 
             unset($_SESSION['flash_notification']); 
         } 
@@ -67,6 +68,7 @@ $base_url = '/fikir';
     </header>
     
     <?php
+    // ================== YENİ GÜN BANNERİ ÜÇÜN MƏNTİQ ==================
     if (isset($_SESSION['show_new_day_banner']) && $_SESSION['show_new_day_banner'] === true) {
         echo '
         <div class="container">
@@ -78,16 +80,21 @@ $base_url = '/fikir';
                     <a href="' . $base_url . '/puan-kazan.php" style="color: white; font-weight: bold; text-decoration: underline;">Puanları Topla!</a>
                 </p>
             </div>
-        </div>'; 
+        </div>';
 
+        // Sessiya dəyişənini dərhal silirik ki, başqa səhifəyə keçdikdə təkrar yaranmasın.
         unset($_SESSION['show_new_day_banner']);
     }
+    // =====================================================================
     
     if (file_exists(PROJECT_ROOT . '/xal/versus_block_view.php')) {
         require_once PROJECT_ROOT . '/xal/versus_block_view.php';
     }
     
+    // Bu hissə artıq istifadə edilmir, amma saxlamışam, çünki əvvəlki kodunuzda var idi.
+    // Ehtiyac yoxdursa, silə bilərsiniz.
     if (isset($_SESSION['user_id']) && empty($_SESSION['user_whatsapp_number'])) {
         // ...
     }
-    ?> 
+    ?>
+</body>
