@@ -55,9 +55,9 @@ $stickers_result = $conn->query($sql);
                             <?php endif; ?>
                         </div>
                     </a>
-                </div>// YENİ KOD:
+                </div>
 <a href="<?php echo $sticker['id']; ?>" class="sticker-card-link-main">
-// və
+
 <a href="<?php echo $sticker['id']; ?>" class="comment-button">✍️ Fikir Bildir</a>
                    </div>
             </div>
