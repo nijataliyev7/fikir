@@ -46,11 +46,11 @@ if (!$is_admin && $current_user_id != $comment_owner_id) {
         <h1>Rəyi Redaktə Et</h1>
         <form action="update_comment.php" method="POST" class="edit-form">
             <input type="hidden" name="id" value="<?php echo $comment_id; ?>">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <label for="comment">Rəy:</label>
             <textarea id="comment" name="comment" rows="6" required><?php echo htmlspecialchars($comment_data['comment']); ?></textarea>
             <button type="submit">Yadda Saxla</button>
             <a href="javascript:history.back()" class="back-link">Geri Qayıt</a>
         </form>
     </div>
-</body>
-</html>
+</body></html>

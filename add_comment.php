@@ -12,6 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST['sticker_id']) || !iss
     exit();
 }
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+    echo json_encode(['status' => 'error', 'message' => 'invalid_token']);
+    exit();
+}
+
 $sticker_id = intval($_POST['sticker_id']);
 $comment_text = trim($_POST['comment']);
 $parent_id = isset($_POST['parent_id']) && !empty($_POST['parent_id']) ? intval($_POST['parent_id']) : null;

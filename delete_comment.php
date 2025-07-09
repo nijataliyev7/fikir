@@ -10,6 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['comment_id'])) {
     exit;
 }
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+    echo json_encode(['status' => 'error', 'message' => 'invalid_token']);
+    exit;
+}
+
 $comment_id = intval($_POST['comment_id']);
 $current_user_id = $_SESSION['user_id'] ?? 0;
 $is_admin = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;

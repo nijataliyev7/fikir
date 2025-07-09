@@ -4,6 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Sessiyada CSRF tokeni yaradılır
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if (!defined('PROJECT_ROOT')) {
     require_once __DIR__ . '/db.php'; 
 }

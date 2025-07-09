@@ -3,6 +3,9 @@ session_start();
 require 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+        die('Invalid CSRF token');
+    }
     $comment_id = intval($_POST['id']);
     $comment_text = trim($_POST['comment']);
     

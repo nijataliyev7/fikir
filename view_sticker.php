@@ -143,6 +143,7 @@ $sticker_page_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/fikir/" . $sti
 
     <form id="comment-form" accept-charset="UTF-8">
         <input type="hidden" name="sticker_id" value="<?php echo $sticker_id; ?>">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <?php if (isset($_SESSION['user_id'])): ?>
             <div class="logged-in-as">
                 <img src="<?php echo htmlspecialchars($_SESSION['user_picture']); ?>" alt="Profil şəkli">
@@ -245,6 +246,7 @@ $sticker_page_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/fikir/" . $sti
 <div id="reply-form-template" style="display: none;">
     <form class="reply-form" method="POST" action="add_comment.php">
         <input type="hidden" name="sticker_id" value="<?php echo $sticker_id; ?>">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <input type="hidden" class="parent-id-input" name="parent_id" value="">
         <textarea name="comment" rows="3" placeholder="Cavabınızı yazın..." required></textarea>
         <div class="reply-form-actions">
@@ -254,7 +256,10 @@ $sticker_page_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/fikir/" . $sti
     </form>
 </div>
 
-<script>var stickerId = <?php echo json_encode($sticker_id); ?>;</script>
+<script>
+var stickerId = <?php echo json_encode($sticker_id); ?>;
+var csrfToken = <?php echo json_encode($_SESSION['csrf_token']); ?>;
+</script>
 
 <?php require 'footer.php'; ?>
 

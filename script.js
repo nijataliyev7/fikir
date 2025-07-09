@@ -222,7 +222,8 @@ $(document).ready(function() {
                 url: 'like_comment.php',
                 data: {
                     id: comment_id,
-                    sticker_id: stickerId
+                    sticker_id: stickerId,
+                    csrf_token: csrfToken
                 },
                 dataType: 'json',
                 success: function(response) {
@@ -258,7 +259,7 @@ $(document).ready(function() {
             if (!confirm('Bu rəyi və ona yazılan bütün cavabları silməyə əminsiniz?')) { return; }
             var button = $(this); var comment_id = button.data('id'); var comment_element = button.closest('.comment');
             $.ajax({
-                type: 'POST', url: 'delete_comment.php', data: { comment_id: comment_id }, dataType: 'json',
+                type: 'POST', url: 'delete_comment.php', data: { comment_id: comment_id, csrf_token: csrfToken }, dataType: 'json',
                 success: function(response) {
                     if (response.status === 'success') { comment_element.fadeOut(500, function() { $(this).remove(); }); } 
                     else { alert("Xəta: " + response.message); }
