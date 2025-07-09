@@ -18,6 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST['id']) || !isset($_POS
     exit();
 }
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+    echo json_encode(['status' => 'error', 'message' => 'invalid_token']);
+    exit();
+}
+
 $comment_id = intval($_POST['id']);
 $sticker_id = intval($_POST['sticker_id']);
 $actor_user_id = $_SESSION['user_id'];

@@ -5,7 +5,9 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 require 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['settings']) && is_array($_POST['settings'])) {
-    // ... (CSRF yoxlamanız burada olmalıdır) ...
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+        exit('Invalid CSRF token');
+    }
 
     $stmt = $conn->prepare("UPDATE settings SET setting_value = ? WHERE setting_key = ?");
     
@@ -18,5 +20,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['settings']) && is_arra
     $stmt->close();
     header("Location: settings.php?success=1");
     exit();
-}
-?>
+}?>
