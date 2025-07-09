@@ -40,5 +40,4 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <li><a href="logout.php">🚪 Çıxış</a></li>
             </ul>
         </nav>
-    </aside>
-    <main class="main-content">
+    </aside>    <main class="main-content">

@@ -279,5 +279,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php
-require 'admin_footer.php';
-?>
+require 'admin_footer.php';?>

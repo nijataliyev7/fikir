@@ -101,5 +101,4 @@ return [
     'qazanc',
     'nofollow',
     'noopener',
-    // ... siyahını bu məntiqlə daha da artırmaq olar.
-];
+    // ... siyahını bu məntiqlə daha da artırmaq olar.];

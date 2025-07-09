@@ -100,5 +100,4 @@ $comments_stmt->close();
             <?php endfor; ?>
         </div>
     </div>
-</body>
-</html>
+</body></html>

@@ -60,5 +60,4 @@ $new_users_today = $new_users_today_result ? $new_users_today_result->fetch_asso
 </div>
 
 <?php
-require 'admin_footer.php'; // Yeni altlığı çağırırıq
-?>
+require 'admin_footer.php'; // Yeni altlığı çağırırıq?>

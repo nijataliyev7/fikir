@@ -21,5 +21,4 @@ if ($correct_answer === null) {
 if ($user_answer === mb_strtolower($correct_answer, 'UTF-8')) {
     echo json_encode(['status' => 'success', 'correct' => true]);
 } else {
-    echo json_encode(['status' => 'success', 'correct' => false]);
-}
+    echo json_encode(['status' => 'success', 'correct' => false]);}

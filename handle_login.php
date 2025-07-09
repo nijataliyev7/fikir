@@ -46,5 +46,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($
     // POST məlumatları gəlməsə
     header("Location: login.php");
     exit;
-}
-?>
+}?>

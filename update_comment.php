@@ -55,5 +55,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $stmt_update->close();
     $conn->close();
-}
-?>
+}?>

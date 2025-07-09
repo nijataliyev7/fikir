@@ -30,5 +30,4 @@ while($row = $settings_result->fetch_assoc()) {
 </div>
 
 <?php
-require 'admin_footer.php';
-?>
+require 'admin_footer.php';?>

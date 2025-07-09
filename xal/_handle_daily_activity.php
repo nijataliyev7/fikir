@@ -48,5 +48,4 @@ if ($user_data && $user_data['last_activity_date'] != $today) {
 }
 
 // Bu sessiya dəyişəni, bu yoxlamanın eyni gündə bir daha işləməməsini təmin edir
-$_SESSION['daily_activity_checked'] = date('Y-m-d');
-?>
+$_SESSION['daily_activity_checked'] = date('Y-m-d');?>

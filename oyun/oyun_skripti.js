@@ -144,5 +144,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
     
-    loadChallenge();
-});
+    loadChallenge();});

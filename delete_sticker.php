@@ -25,5 +25,4 @@ if (isset($_GET['id'])) {
     $stmt_comments->bind_param("i", $id);
     $stmt_comments->execute();
 }
-header("Location: manage_stickers.php");
-?>
+header("Location: manage_stickers.php");?>

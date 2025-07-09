@@ -55,5 +55,4 @@ if (count($users_batch) < $batch_size) {
         'total_users' => $total_users,
         'next_offset' => $offset + $batch_size
     ]);
-}
-?>
+}?>

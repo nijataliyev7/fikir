@@ -66,5 +66,4 @@ function checkAndDecrementReplyLimit($conn, $userId) {
         $conn->query("UPDATE users SET daily_replies_left = daily_replies_left - 1 WHERE id = $userId");
         return true;
     }
-    return false;
-}
+    return false;}

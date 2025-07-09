@@ -224,5 +224,4 @@ form .back-link {
 
 .actions a.view-btn { background-color: var(--primary-color); }
 .actions a.edit-btn { background-color: #ffc107; color: var(--dark-blue);} /* Sarı fon, tünd mətn */
-.actions a.end-btn { background-color: #17a2b8; } /* Mavi-yaşıl rəng */
-.actions a.delete-btn { background-color: #dc3545; }
+.actions a.end-btn { background-color: #17a2b8; } /* Mavi-yaşıl rəng */.actions a.delete-btn { background-color: #dc3545; }

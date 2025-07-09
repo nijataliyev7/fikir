@@ -26,5 +26,4 @@ if ($winner_stmt && $winner_stmt->num_rows > 0) {
 $conn->query("UPDATE users SET activity_score = 0");
 echo "All user activity scores have been reset.\n";
 
-$conn->close();
-?>
+$conn->close();?>

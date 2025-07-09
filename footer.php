@@ -5,5 +5,4 @@
 <script src="script.js?v=<?php echo filemtime('script.js'); ?>"></script>
 
 <div id="toast-container"></div>
-</body>
-</html>
+</body></html>

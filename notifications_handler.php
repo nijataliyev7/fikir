@@ -32,5 +32,4 @@ elseif ($action === 'mark_read') {
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     echo json_encode(['status' => 'success']);
-}
-?>
+}?>

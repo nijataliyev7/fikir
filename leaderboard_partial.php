@@ -48,5 +48,4 @@ $stmt_top_users->close();
             }
         ?>
 
-    </div>
-</div>
+    </div></div>

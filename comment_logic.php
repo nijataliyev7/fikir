@@ -58,5 +58,4 @@ $top_comment_stmt = $conn->prepare("
 $top_comment_stmt->bind_param("i", $sticker_id);
 $top_comment_stmt->execute();
 $top_comment = $top_comment_stmt->get_result()->fetch_assoc();
-$top_comment_stmt->close();
-?>
+$top_comment_stmt->close();?>

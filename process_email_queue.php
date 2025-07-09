@@ -61,5 +61,4 @@ foreach ($emails_to_send as $email_job) {
 
 echo "Processed " . count($emails_to_send) . " emails. Sent successfully: " . $sent_count . "\n";
 
-$conn->close();
-?>
+$conn->close();?>
