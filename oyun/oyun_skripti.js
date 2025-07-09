@@ -5,6 +5,7 @@ const keyClickSound = new Audio("./oyun/files/keyClickSound.mp3");
 const winSound = new Audio("./oyun/files/winSound.mp3");
 const SoundGreen = new Audio("./oyun/files/SoundGreen.mp3");
 const SoundGrayOrange = new Audio("./oyun/files/SoundGrayOrange.mp3");
+let soundEnabled = true;
 
 document.addEventListener('DOMContentLoaded', async () => {
     const board = document.getElementById('game-board');
@@ -115,9 +116,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             dataType: 'json',
             success: function(response) {
                 if (response.status === 'success' && response.correct) {
+                    if (soundEnabled) SoundGreen.play();
                     currentStageIndex++;
                     renderCurrentStage();
                 } else {
+                    if (soundEnabled) SoundGrayOrange.play();
                     messageEl.textContent = 'Təəssüf, səhv cavab. Diqqətlə düşünün!';
                     messageEl.className = 'game-message error';
                     document.getElementById('guess-button').disabled = false;
@@ -130,6 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function finishChallenge() {
         progressBar.style.width = '100%';
         if (timerInterval) clearInterval(timerInterval);
+        if (soundEnabled) winSound.play();
         stageContainer.innerHTML = `<h2 class="game-message success">Təbriklər! Sınağı tamamladınız!</h2><p>Xalınız hesablanır...</p>`;
         
         $.ajax({
@@ -158,4 +162,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
     
-    loadChallenge();});
+    const soundToggleBtn = document.getElementById('sound-toggle');
+    if (soundToggleBtn) {
+        soundToggleBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            [keyClickSound, winSound, SoundGreen, SoundGrayOrange].forEach(a => a.muted = !soundEnabled);
+            soundToggleBtn.textContent = soundEnabled ? '🔊' : '🔈';
+        });
+    }
+
+    loadChallenge();
+});

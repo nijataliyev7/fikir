@@ -26,7 +26,10 @@ $can_play = (!isset($user_bonus_data['last_daily_bonus_date']) || $user_bonus_da
     <div class="challenge-container">
         <?php if ($can_play): ?>
             <div class="challenge-wrapper">
-                <h1>Gündəlik Sınaq</h1>
+                <div class="challenge-header">
+                    <h1>Gündəlik Sınaq</h1>
+                    <button id="sound-toggle" class="sound-toggle" title="Səsi aç / söndür">🔊</button>
+                </div>
                 <p class="text-muted" style="color: #6c757d; margin-top: -10px; margin-bottom: 20px;">
                     Sınağı ən sürətli şəkildə tamamlayaraq <strong>100 xala qədər</strong> bonus qazanın!
                 </p>
@@ -49,9 +52,10 @@ $can_play = (!isset($user_bonus_data['last_daily_bonus_date']) || $user_bonus_da
 
     <div class="leaderboard-section" style="margin-top: 30px;">
         <div class="leaderboard-grid">
-            <?php 
+            <?php
                 $leaderboard_limit = 10;
-                require_once __DIR__ . '/leaderboard_daily.php'; 
+                require_once __DIR__ . '/leaderboard_daily.php';
+                require_once __DIR__ . '/leaderboard_overall.php';
             ?>
         </div>
     </div>
