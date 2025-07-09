@@ -55,10 +55,11 @@ $stickers_result = $conn->query($sql);
                             <?php endif; ?>
                         </div>
                     </a>
-                </div>
-                <div class="sticker-info sticker-action-area">
-                    <a href="view_sticker.php?id=<?php echo $sticker['id']; ?>" class="comment-button">✍️ Fikir Bildir</a>
-                </div>
+                </div>// YENİ KOD:
+<a href="<?php echo $sticker['id']; ?>" class="sticker-card-link-main">
+// və
+<a href="<?php echo $sticker['id']; ?>" class="comment-button">✍️ Fikir Bildir</a>
+                   </div>
             </div>
         <?php endwhile; ?>
     <?php else: ?>
