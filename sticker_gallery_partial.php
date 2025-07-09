@@ -2,20 +2,34 @@
 // sticker_gallery_partial.php
 if (!isset($conn) || !$conn) { require 'db.php'; }
 
-// DÜZƏLİŞ: SQL sorğusuna ən populyar rəy müəllifinin profil şəklini (top_comment_author_pic) çəkən alt-sorğu əlavə edildi.
+// Performans üçün optimizə edilmiş SQL sorğusu
+// "N+1 Query" problemini həll edir, hər şeyi tək sorğuda çəkir.
 $sql = "
+WITH RankedComments AS (
     SELECT
-        s.id,
-        s.title,
-        s.image_path,
-        s.poster_path,
-        s.status,
-        (SELECT c.comment FROM comments c WHERE c.sticker_id = s.id AND c.likes > 0 ORDER BY c.likes DESC, c.created_at DESC LIMIT 1) as top_comment_text,
-        (SELECT c.likes FROM comments c WHERE c.sticker_id = s.id AND c.likes > 0 ORDER BY c.likes DESC, c.created_at DESC LIMIT 1) as top_comment_likes,
-        (SELECT u.name FROM comments c JOIN users u ON c.user_id = u.id WHERE c.sticker_id = s.id AND c.likes > 0 ORDER BY c.likes DESC, c.created_at DESC LIMIT 1) as top_comment_author,
-        (SELECT u.profile_picture_url FROM comments c JOIN users u ON c.user_id = u.id WHERE c.sticker_id = s.id AND c.likes > 0 ORDER BY c.likes DESC, c.created_at DESC LIMIT 1) as top_comment_author_pic
-    FROM stickers s
-    ORDER BY s.created_at DESC;
+        c.sticker_id,
+        c.comment,
+        c.likes,
+        u.name,
+        u.profile_picture_url,
+        ROW_NUMBER() OVER(PARTITION BY c.sticker_id ORDER BY c.likes DESC, c.created_at DESC) as rn
+    FROM comments c
+    JOIN users u ON c.user_id = u.id
+    WHERE c.likes > 0
+)
+SELECT
+    s.id,
+    s.title,
+    s.image_path,
+    s.poster_path,
+    s.status,
+    rc.comment as top_comment_text,
+    rc.likes as top_comment_likes,
+    rc.name as top_comment_author,
+    rc.profile_picture_url as top_comment_author_pic
+FROM stickers s
+LEFT JOIN RankedComments rc ON s.id = rc.sticker_id AND rc.rn = 1
+ORDER BY s.created_at DESC;
 ";
 
 $stickers_result = $conn->query($sql);
@@ -26,7 +40,8 @@ $stickers_result = $conn->query($sql);
         <?php while($sticker = $stickers_result->fetch_assoc()): ?>
             <div class="sticker-card-wrapper">
                 <div class="sticker-card-content">
-                    <a href="view_sticker.php?id=<?php echo $sticker['id']; ?>" class="sticker-card-link-main">
+                    <?php // ===== DÜZƏLİŞ 1: Əsas link bütün şəkil və məlumat blokunu əhatə edir ===== ?>
+                    <a href="<?php echo $sticker['id']; ?>" class="sticker-card-link-main">
                         <div class="sticker-card bg-color-<?php echo rand(1, 5); ?>">
                             
                             <?php if ($sticker['status'] !== 'active'): ?>
@@ -56,10 +71,10 @@ $stickers_result = $conn->query($sql);
                         </div>
                     </a>
                 </div>
-<a href="<?php echo $sticker['id']; ?>" class="sticker-card-link-main">
-
-<a href="<?php echo $sticker['id']; ?>" class="comment-button">✍️ Fikir Bildir</a>
-                   </div>
+                <?php // ===== DÜZƏLİŞ 2: "Fikir Bildir" düyməsi ayrıca bir blokda, əsas linkdən kənarda yerləşdirilib ===== ?>
+                <div class="sticker-info sticker-action-area">
+                    <a href="<?php echo $sticker['id']; ?>" class="comment-button">✍️ Fikir Bildir</a>
+                </div>
             </div>
         <?php endwhile; ?>
     <?php else: ?>
