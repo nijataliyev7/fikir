@@ -69,13 +69,19 @@ if (isset($_SESSION['user_id'])) {
     if ($parent_id !== null) {
         $parent_stmt = $conn->prepare("SELECT u.name FROM comments c JOIN users u ON c.user_id = u.id WHERE c.id = ?");
         $parent_stmt->bind_param("i", $parent_id);
-        $parent_stmt->execute();
-        $parent_comment = $parent_stmt->get_result()->fetch_assoc();
-        if ($parent_comment) {
-            $parent_username = $parent_comment['name'];
-            if (strpos($comment_text, "@" . $parent_username) !== 0) {
-                $comment_text = "@" . $parent_username . " " . $comment_text;
+        if ($parent_stmt->execute()) {
+            $result = $parent_stmt->get_result();
+            if ($result) {
+                $parent_comment = $result->fetch_assoc();
+                if ($parent_comment) {
+                    $parent_username = $parent_comment['name'];
+                    if (strpos($comment_text, "@" . $parent_username) !== 0) {
+                        $comment_text = "@" . $parent_username . " " . $comment_text;
+                    }
+                }
             }
+        } else {
+            error_log('Parent lookup failed: ' . $parent_stmt->error, 3, __DIR__ . '/logs/add_comment.log');
         }
         $parent_stmt->close();
     }
@@ -142,6 +148,7 @@ if (isset($_SESSION['user_id'])) {
 
     } catch (Exception $e) {
         $conn->rollback();
+        error_log('Add comment transaction failed: ' . $e->getMessage(), 3, __DIR__ . '/logs/add_comment.log');
         echo json_encode(['status' => 'error', 'message' => 'db_error: ' . $e->getMessage()]);
     }
 
